@@ -98,6 +98,24 @@ structs.grid_hash = function(size) {
     }
 }
 
+structs.grid_hash_str = function(size) {
+    var d = {};
+
+    var w = size[0], h = size[1];
+    for (var x=w; x >= 0; x--){
+        for (var y = h; y >= 0; y--) d[x+','+y] = 0;
+    }
+
+    return {
+        set: function(pos, value) {
+            d[pos.join(',')] = value;
+        },
+        get: function(pos) {
+            return d[pos.join(',')];
+        }
+    }
+}
+
 
 structs.grid_hash_2d = function(size) {
     var d = {};

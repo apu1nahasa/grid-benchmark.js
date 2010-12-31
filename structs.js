@@ -1,4 +1,5 @@
 var structs = {};
+var bstructs = {};
 
 structs.grid_array_2d = function(size) {
     var grid = [];
@@ -6,6 +7,25 @@ structs.grid_array_2d = function(size) {
     for (var x=w; x>=0; x--) {
         var row = [];
         for(var y=h; y>=0; y--) row.push(0);
+        grid.push(row);
+    }
+
+    return {
+        set: function(pos, value) {
+            grid[pos[0]][pos[1]] = value;
+        },
+        get: function(pos) {
+            return grid[pos[0]][pos[1]];
+        }
+    }
+}
+
+structs.grid_array_2d_fast = function(size) {
+    var grid = [];
+    var w = size[0], h = size[1];
+    for (var x=0; x<w; ++x) {
+        var row = [];
+        for(var y=0; y<h; ++y) row.push(0);
         grid.push(row);
     }
 
@@ -157,7 +177,7 @@ structs.grid_hash_lazy_2d = function(size) {
 }
 
 
-structs.grid_canvas = function(size) {
+bstructs.grid_canvas = function(size) {
     var canvas = document.createElement("canvas");
 
     canvas.width = size[0];
@@ -175,3 +195,4 @@ structs.grid_canvas = function(size) {
         }
     }
 }
+
